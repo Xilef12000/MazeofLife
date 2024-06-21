@@ -17,18 +17,21 @@ namespace MazeGame
         public Maze() {
 
             // create rooms
-            roomsList.Add(new Room("Kitchen", 0, 1));
+            Room kitchen = new Room("Kitchen", 0, 1);
             Door door0 = new Door("Door", 'E');
-            roomsList[0].addItem(door0);
-            roomsList.Add(new Room("Living Room", 1, 1));
-            roomsList[1].addItem(new Item("heavy", false));
+            kitchen.addItem(door0);
+            roomsList.Add(kitchen);
+            Room livingroom = new Room("Living Room", 1, 1);
+            livingroom.addItem(new Item("heavy", false));
+            roomsList.Add(livingroom);
             roomsList.Add(new winningRoom("Exit", 3, 1));
             roomsList.Add(new Room("Special Room", 2, 1));
-            startRoom = new Room("Bathroom", 0, 0);
-            startRoom.addItem(new Key("Key", door0));
-            startRoom.addItem(new Key("Key2", new Door("Door2", 'E')));
-            startRoom.addItem(new WoodenStick("cool wooden stick", true));
-            roomsList.Add(startRoom);
+            Room bathroom = new Room("Bathroom", 0, 0);
+            bathroom.addItem(new Key("Key", door0));
+            bathroom.addItem(new Key("Key2", new Door("Door2", 'E')));
+            bathroom.addItem(new WoodenStick("cool wooden stick", true));
+            roomsList.Add(bathroom);
+            startRoom = bathroom;
             roomsList.Add(new Room("Bedroom", 1, 0));
             roomsList.Add(new loosingRoom("Torture Chamber", 1, -1));
 
