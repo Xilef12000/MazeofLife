@@ -1,1 +1,3 @@
-# MazeGame
+# MazeofLive
+
+## MazeGame Team C🦈
