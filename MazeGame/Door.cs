@@ -19,6 +19,12 @@ namespace MazeGame
             updateName();
         }
 
+        public override void use(Player user)
+        {
+            // unecissary because door can not be picked up
+            MessageBox.Show("This Item cant be used.");
+        }
+
         public void toggleLock()
         {
             locked = !locked;

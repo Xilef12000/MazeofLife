@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MazeGame
 {
-    public class Item
+    abstract public class Item
     {
         private string name;
         private bool pickable;
@@ -17,10 +17,7 @@ namespace MazeGame
         }
         public bool isPickable() { return pickable; }
         public override string ToString() { return this.name; }
-        public virtual void use(Player user)
-        {
-            MessageBox.Show("This Item cant be used.");
-        }
+        abstract public void use(Player user);
         protected void updateName (string name) { this.name = name; }
     }
 }
