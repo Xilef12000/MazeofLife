@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,10 +18,15 @@ namespace MazeGame
         private CheckBox[,] GoLCheckBox;
         private int height;
         private int width;
+        private bool signalExit;
+        private bool simulationCancellationRequest = false;
+        private int simulationSpeed = 500;
+        private int generationCounter = 0;
         public GoLForm(int[,] GoLGoal)
         {
-            this.GoLGoal = GoLGoal;
             InitializeComponent();
+            trackBar1.Value = simulationSpeed;
+            this.GoLGoal = GoLGoal;
             this.height = this.GoLGoal.GetLength(0);
             this.width = this.GoLGoal.GetLength(1);
             GoLState = new int[this.height, this.width];
@@ -45,7 +51,7 @@ namespace MazeGame
                         checkBox.Enabled = false;
                     }
                     this.Controls.Add(checkBox);
-                    GoLCheckBox[i,j] = checkBox;
+                    GoLCheckBox[i, j] = checkBox;
                 }
             }
         }
@@ -55,21 +61,20 @@ namespace MazeGame
             {
                 for (int j = 0; j < this.width; j++)
                 {
-                    GoLState[i,j] = GoLCheckBox[i,j].Checked ? 1 : 0;
+                    GoLState[i, j] = GoLCheckBox[i, j].Checked ? 1 : 0;
                 }
             }
         }
-        private bool compareStates(int[,] goal, int[,] state)
+        private bool compareStates()
         {
-            // a and b must be of [height, width]
             // ckecks if all 1 in goal are 1 in state
             for (int i = 0; i < this.height; i++)
             {
                 for (int j = 0; j < this.width; j++)
                 {
-                    if (goal[i,j] == 1)
+                    if (this.GoLGoal[i, j] == 1)
                     {
-                        if (state[i,j] == 0)
+                        if (this.GoLState[i, j] == 0)
                         {
                             return false;
                         }
@@ -78,23 +83,64 @@ namespace MazeGame
             }
             return true;
         }
-        private void startSimulation()
+        private void nextGeneration()
         {
-            int test = GoLGoal[0,0];
-            getCheckboxStates();
-            if (compareStates(GoLGoal, GoLState))
+            if (simulationCancellationRequest)
+            {
+                simulationCancellationRequest = false;
+                return;
+            }
+            generationCounter++;
+            Debug.WriteLine($"Generation{generationCounter}");
+            getCheckboxStates(); // WIP disable later
+            if (compareStates())
             {
                 this.DialogResult = DialogResult.OK;
+
+                this.Invoke((MethodInvoker)delegate // close the form on the forms thread
+                {
+                    this.Close();
+                });
+
             }
             else
             {
-                this.DialogResult = DialogResult.Cancel;
+                // WIP implement generating next generation here
+                Task.Delay(simulationSpeed).ContinueWith(t => nextGeneration());
             }
-            this.Close();
         }
-        private void Start_Click(object sender, EventArgs e)
+        private void startSimulation()
         {
-            startSimulation();
+            StartButton.Text = "Stop";
+            getCheckboxStates();
+            if (compareStates())
+            {
+                MessageBox.Show("You cant't tick all Goal Boxes");
+                StartButton.Text = "Start";
+                return;
+            }
+            Task.Delay(simulationSpeed).ContinueWith(t => nextGeneration());
+        }
+        private void stopSimulation()
+        {
+            simulationCancellationRequest = true;
+            StartButton.Text = "Start";
+        }
+        private void StartButton_Click(object sender, EventArgs e)
+        {
+            if (StartButton.Text == "Stop")
+            {
+                stopSimulation();
+            }
+            else if (StartButton.Text == "Start")
+            {
+                startSimulation();
+            }
+        }
+
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            simulationSpeed = trackBar1.Value;
         }
     }
 }
