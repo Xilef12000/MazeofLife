@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace MazeGame
         public override void use(Player user)
         {
             // unecissary because door can not be picked up
-            MessageBox.Show("This Item cant be used.");
+            throw new UnreachableException();
         }
 
         public void toggleLock()

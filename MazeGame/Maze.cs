@@ -45,6 +45,7 @@ namespace MazeGame
                 Room? west = roomsList.Find(r => (r.x == room.x - 1) && (r.y == room.y));
                 // connect room
                 room.setConnectedRooms(north, east, south, west);
+                //room.printAllConnected();
             }
             // link doors
             foreach (Room room in roomsList)
