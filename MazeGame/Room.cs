@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -51,25 +52,24 @@ namespace MazeGame
         }
         public void printAllConnected()
         {
-            Console.WriteLine($"{getName()}:");
+            Debug.WriteLine($"{getName()}:");
             List<char> directions = new List<char> { 'N', 'E', 'S', 'W' };
             foreach (char direction in directions)
             {
                 Room? next = getConnectedRoom(direction);
-                Console.Write($"{direction}: ");
+                Debug.Write($"{direction}: ");
                 if (next != null)
                 {
-                    Console.WriteLine(next.getName());
+                    Debug.WriteLine(next.getName());
                 }
                 else
                 {
-                    Console.WriteLine("null");
+                    Debug.WriteLine("null");
                 }
             }
         }
         public virtual bool whenEntered()
         {
-            //MessageBox.Show("test");
             return false;
         }
         public List<Item> getContent()

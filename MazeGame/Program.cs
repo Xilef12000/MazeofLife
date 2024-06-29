@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace MazeGame
 {
     internal static class Program
