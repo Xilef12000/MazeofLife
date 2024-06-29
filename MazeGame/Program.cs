@@ -21,7 +21,17 @@ namespace MazeGame
                 {0, 0, 0, 1, 0},
                 {0, 0, 0, 0, 0}
             };
-            Application.Run(new GoLForm(GoLGoal));
+            Form GoLForm = new GoLForm(GoLGoal);
+            Application.Run(GoLForm);
+            DialogResult result = GoLForm.DialogResult;
+            if (result == DialogResult.OK)
+            {
+                Debug.WriteLine("OK");
+            }
+            else
+            {
+                Debug.WriteLine("Not OK");
+            }
         }
     }
 }

@@ -28,12 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "GoLForm";
+            Start = new Button();
+            SuspendLayout();
+            // 
+            // Start
+            // 
+            Start.Font = new Font("Segoe UI", 18F);
+            Start.Location = new Point(24, 24);
+            Start.Name = "Start";
+            Start.Size = new Size(150, 46);
+            Start.TabIndex = 0;
+            Start.Text = "Start";
+            Start.UseVisualStyleBackColor = true;
+            Start.Click += Start_Click;
+            // 
+            // GoLForm
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(Start);
+            Name = "GoLForm";
+            Text = "GoLForm";
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private Button Start;
     }
 }

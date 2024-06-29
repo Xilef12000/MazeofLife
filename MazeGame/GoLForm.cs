@@ -40,5 +40,15 @@ namespace MazeGame
                 }
             }
         }
+
+        private void startSimulation()
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+        private void Start_Click(object sender, EventArgs e)
+        {
+            startSimulation();
+        }
     }
 }
