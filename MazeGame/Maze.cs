@@ -30,7 +30,8 @@ namespace MazeGame
             specialRoom.addItem(door1);
             roomsList.Add(specialRoom);
             Key key1 = new Key("GoLKey", door1);
-            specialRoom.addItem(key1);
+            GolItem gol = new GolItem("Gol", key1);
+            specialRoom.addItem(gol);
             Room bathroom = new Room("Bathroom", 0, 0);
             bathroom.addItem(new Key("Key", door0));
             bathroom.addItem(new Key("Key2", new Door("Door2", 'E')));
