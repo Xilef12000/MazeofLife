@@ -25,7 +25,12 @@ namespace MazeGame
             //livingroom.addItem(new Item("heavy", false));
             roomsList.Add(livingroom);
             roomsList.Add(new winningRoom("Exit", 3, 1));
-            roomsList.Add(new Room("Special Room", 2, 1));
+            Room specialRoom = new Room("Special Room", 2, 1);
+            Door door1 = new Door("GoLDoor", 'E');   
+            specialRoom.addItem(door1);
+            roomsList.Add(specialRoom);
+            Key key1 = new Key("GoLKey", door1);
+            specialRoom.addItem(key1);
             Room bathroom = new Room("Bathroom", 0, 0);
             bathroom.addItem(new Key("Key", door0));
             bathroom.addItem(new Key("Key2", new Door("Door2", 'E')));
