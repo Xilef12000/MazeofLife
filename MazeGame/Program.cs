@@ -16,7 +16,7 @@ namespace MazeGame
             //Application.Run(new MainWindow());
             int[,] GoLGoal = {
                 {0, 0, 0, 0, 0},
-                {0, 1, 1, 1, 0},
+                {0, 0, 1, 0, 0},
                 {0, 0, 0, 0, 0},
                 {0, 0, 0, 1, 0},
                 {0, 0, 0, 0, 0}

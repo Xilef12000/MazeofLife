@@ -15,6 +15,7 @@ namespace MazeGame
     {
         private int[,] GoLState;
         public int[,] GoLGoal;
+        public int[,] GoLNext;
         private CheckBox[,] GoLCheckBox;
         private int height;
         private int width;
@@ -30,6 +31,7 @@ namespace MazeGame
             this.height = this.GoLGoal.GetLength(0);
             this.width = this.GoLGoal.GetLength(1);
             GoLState = new int[this.height, this.width];
+            GoLNext = new int[this.height, this.width];
             GoLCheckBox = new CheckBox[this.height, this.width];
 
             for (int i = 0; i < this.height; i++)
@@ -102,16 +104,64 @@ namespace MazeGame
             }
             generationCounter++;
             Debug.WriteLine($"Generation{generationCounter}");
-            getCheckboxStates(); // WIP disable later
             rules.Text = $"{generationCounter}";
             if (compareStates())
             {
                 this.DialogResult = DialogResult.OK;
+                MessageBox.Show("You solved the Game of Life");
                 this.Close();
             }
             else
             {
-                // WIP implement generating next generation here
+                for (int i = 0; i < this.height; i++)
+                {
+                    for (int j = 0; j < this.width; j++)
+                    {
+                        if (i == 0 || i == this.height - 1 || j == 0 || j == this.width - 1)
+                        {
+                            // skip
+                        }
+                        else
+                        {
+                            int neighbours = 0;
+                            neighbours += GoLState[i - 1, j - 1];
+                            neighbours += GoLState[i - 1, j + 0];
+                            neighbours += GoLState[i - 1, j + 1];
+                            neighbours += GoLState[i + 0, j - 1];
+                            neighbours += GoLState[i + 0, j + 1];
+                            neighbours += GoLState[i + 1, j - 1];
+                            neighbours += GoLState[i + 1, j - 0];
+                            neighbours += GoLState[i + 1, j + 1];
+                            if (neighbours == 3)
+                            {
+                                GoLNext[i, j] = 1;
+                            }
+                            else
+                            {
+                                GoLNext[i, j] = 0;
+                                if (GoLState[i, j] == 1 && neighbours == 2)
+                                {
+                                    GoLNext[i, j] = 1;
+                                }
+                            }
+                        }
+                    }
+                }
+                for (int i = 0; i < this.height; i++)
+                {
+                    for (int j = 0; j < this.width; j++)
+                    {
+                        if (i == 0 || i == this.height - 1 || j == 0 || j == this.width - 1)
+                        {
+                            // skip
+                        }
+                        else
+                        {
+                            GoLState[i, j] = GoLNext[i, j];
+                            GoLCheckBox[i, j].Checked = GoLNext[i, j] == 1 ? true : false;
+                        }
+                    }
+                }
                 delayExec(simulationDelay, nextGeneration);
             }
         }
