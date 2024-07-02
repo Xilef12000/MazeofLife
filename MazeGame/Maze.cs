@@ -22,7 +22,7 @@ namespace MazeGame
             kitchen.addItem(door0);
             roomsList.Add(kitchen);
             Room livingroom = new Room("Living Room", 1, 1);
-            livingroom.addItem(new Item("heavy", false));
+            //livingroom.addItem(new Item("heavy", false));
             roomsList.Add(livingroom);
             roomsList.Add(new winningRoom("Exit", 3, 1));
             roomsList.Add(new Room("Special Room", 2, 1));
@@ -45,6 +45,7 @@ namespace MazeGame
                 Room? west = roomsList.Find(r => (r.x == room.x - 1) && (r.y == room.y));
                 // connect room
                 room.setConnectedRooms(north, east, south, west);
+                //room.printAllConnected();
             }
             // link doors
             foreach (Room room in roomsList)

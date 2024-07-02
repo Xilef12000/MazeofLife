@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,12 @@ namespace MazeGame
             this.direction = direction;
             this.basename = name;
             updateName();
+        }
+
+        public override void use(Player user)
+        {
+            // unecissary because door can not be picked up
+            throw new UnreachableException();
         }
 
         public void toggleLock()
