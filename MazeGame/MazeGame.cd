@@ -153,8 +153,8 @@
     <Position X="10" Y="6.5" Width="1.5" />
     <InheritanceLine Type="MazeGame.Item" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="9.25" Y="8.38" />
-        <Point X="10.688" Y="8.38" />
+        <Point X="9.25" Y="8.312" />
+        <Point X="10.688" Y="8.312" />
         <Point X="10.688" Y="7.926" />
       </Path>
     </InheritanceLine>
@@ -164,12 +164,12 @@
     </TypeIdentifier>
   </Class>
   <Class Name="MazeGame.Key">
-    <Position X="11.75" Y="6.5" Width="1.5" />
+    <Position X="14.75" Y="6.5" Width="1.5" />
     <InheritanceLine Type="MazeGame.Item" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="9.25" Y="8.583" />
-        <Point X="12.5" Y="8.583" />
-        <Point X="12.5" Y="7.925" />
+        <Point X="9.25" Y="8.812" />
+        <Point X="15.5" Y="8.812" />
+        <Point X="15.5" Y="7.925" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -181,17 +181,19 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="MazeGame.Door">
-    <Position X="14" Y="6.5" Width="1.5" />
-    <InheritanceLine Type="MazeGame.Item" FixedFromPoint="true" FixedToPoint="true">
+    <Position X="17" Y="6.5" Width="1.5" />
+    <InheritanceLine Type="MazeGame.Item" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="9.25" Y="8.813" />
-        <Point X="14" Y="8.813" />
+        <Point X="9.25" Y="9.125" />
+        <Point X="16.253" Y="9.125" />
+        <Point X="16.253" Y="9.125" />
+        <Point X="17" Y="9.125" />
       </Path>
     </InheritanceLine>
     <AssociationLine Name="connections" Type="MazeGame.Room" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="14.75" Y="6.5" />
-        <Point X="14.75" Y="6.125" />
+        <Point X="17.75" Y="6.5" />
+        <Point X="17.75" Y="6.125" />
         <Point X="8.927" Y="6.125" Type="JumpStart" />
         <Point X="8.76" Y="6.125" Type="JumpEnd" />
         <Point X="4" Y="6.125" />
@@ -204,6 +206,41 @@
     <ShowAsCollectionAssociation>
       <Field Name="connections" />
     </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="MazeGame.GoLForm">
+    <Position X="11.75" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Delegate Name="MazeGame.GoLForm.voidDelegate" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>GoLForm.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>WAAAAAAAWCAAQAUASACARoICBEAAAABAAACCEgAAAAA=</HashCode>
+      <FileName>GoLForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MazeGame.GolItem">
+    <Position X="12.25" Y="6.5" Width="1.5" />
+    <InheritanceLine Type="MazeGame.Item" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="9.25" Y="8.562" />
+        <Point X="12.938" Y="8.562" />
+        <Point X="12.938" Y="7.925" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <FileName>GolItem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="key" />
+    </ShowAsAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
