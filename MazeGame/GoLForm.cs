@@ -23,6 +23,7 @@ namespace MazeGame
         private bool simulationCancellationRequest = false;
         private int simulationDelay = 500;
         private int generationCounter = 0;
+        private bool won = false;
         public GoLForm(int[,] GoLGoal)
         {
             InitializeComponent();
@@ -99,6 +100,10 @@ namespace MazeGame
         }
         private void closeForm()
         {
+            if (won == true)
+            {
+                this.DialogResult = DialogResult.OK;
+            }
             this.Close();
         }
         private void nextGeneration()
@@ -114,6 +119,7 @@ namespace MazeGame
             if (compareStates())
             {
                 this.DialogResult = DialogResult.OK;
+                won = true;
                 MessageBox.Show("You solved the Game of Life");
                 this.Close();
             }
@@ -217,6 +223,10 @@ namespace MazeGame
                 e.Cancel = true;
                 stopSimulation();
                 delayExec(simulationDelay*2, closeForm);
+            }
+            if (won == true)
+            {
+                this.DialogResult = DialogResult.OK;
             }
         }
     }
