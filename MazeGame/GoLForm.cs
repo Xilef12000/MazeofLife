@@ -26,6 +26,7 @@ namespace MazeGame
         public GoLForm(int[,] GoLGoal)
         {
             InitializeComponent();
+            this.FormClosing += GoLForm_FormClosing;
             trackBar1.Value = simulationDelay;
             this.GoLGoal = GoLGoal;
             this.height = this.GoLGoal.GetLength(0);
@@ -40,7 +41,7 @@ namespace MazeGame
                 {
                     CheckBox checkBox = new CheckBox();
                     checkBox.Appearance = Appearance.Button;
-                    checkBox.Location = new Point(80 + 56 * j, 80 + 56 * i);
+                    checkBox.Location = new Point(80 + 56 * j, 160 + 56 * i);
                     checkBox.Name = $"checkBox{i}x{j}";
                     checkBox.Size = new Size(48, 48);
                     checkBox.TabIndex = 0;
@@ -85,15 +86,20 @@ namespace MazeGame
             }
             return true;
         }
-        private delegate void voidDelegate(); 
+        private delegate void voidDelegate();
         private void delayExec(int delay, voidDelegate exec)
         {
-            Task.Delay(delay).ContinueWith(t => {
+            Task.Delay(delay).ContinueWith(t =>
+            {
                 this.Invoke((MethodInvoker)delegate
                 {
                     exec();
                 });
             });
+        }
+        private void closeForm()
+        {
+            this.Close();
         }
         private void nextGeneration()
         {
@@ -104,7 +110,7 @@ namespace MazeGame
             }
             generationCounter++;
             Debug.WriteLine($"Generation{generationCounter}");
-            rules.Text = $"{generationCounter}";
+            generationLabel.Text = $"Generation: {generationCounter}";
             if (compareStates())
             {
                 this.DialogResult = DialogResult.OK;
@@ -175,6 +181,7 @@ namespace MazeGame
                 StartButton.Text = "Start";
                 return;
             }
+            generationCounter = 0;
             delayExec(simulationDelay, nextGeneration);
         }
         private void stopSimulation()
@@ -197,6 +204,20 @@ namespace MazeGame
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             simulationDelay = trackBar1.Value;
+        }
+
+        private void GoLForm_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void GoLForm_FormClosing(object sender, CancelEventArgs e)
+        {
+            if (StartButton.Text == "Stop")
+            {
+                e.Cancel = true;
+                stopSimulation();
+                delayExec(simulationDelay*2, closeForm);
+            }
         }
     }
 }

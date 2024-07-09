@@ -117,4 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="rulesLabel.Text" xml:space="preserve">
+    <value>To win the Game of Live, each marked Cell needs to be alive.
+Build your start Pattern, and Press "Start".
+
+Game Of Live Rules Rules:
+Each cell with one or no neighbors dies, as if by solitude.
+Each cell with four or more neighbors dies, as if by overpopulation.
+Each cell with two or three neighbors survives.
+Each cell with three neighbors becomes populated.</value>
+  </data>
 </root>

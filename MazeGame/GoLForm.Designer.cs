@@ -28,54 +28,71 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GoLForm));
             StartButton = new Button();
-            rules = new Label();
+            rulesLabel = new Label();
             trackBar1 = new TrackBar();
+            generationLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)trackBar1).BeginInit();
             SuspendLayout();
             // 
             // StartButton
             // 
             StartButton.Font = new Font("Segoe UI", 18F);
-            StartButton.Location = new Point(24, 24);
+            StartButton.Location = new Point(34, 40);
+            StartButton.Margin = new Padding(4, 5, 4, 5);
             StartButton.Name = "StartButton";
-            StartButton.Size = new Size(150, 46);
+            StartButton.Size = new Size(214, 77);
             StartButton.TabIndex = 0;
             StartButton.Text = "Start";
             StartButton.UseVisualStyleBackColor = true;
             StartButton.Click += StartButton_Click;
             // 
-            // rules
+            // rulesLabel
             // 
-            rules.AutoSize = true;
-            rules.Location = new Point(393, 25);
-            rules.Name = "rules";
-            rules.Size = new Size(68, 15);
-            rules.TabIndex = 1;
-            rules.Text = "GoL Rules...";
+            rulesLabel.AutoSize = true;
+            rulesLabel.Location = new Point(725, 42);
+            rulesLabel.Margin = new Padding(4, 0, 4, 0);
+            rulesLabel.Name = "rulesLabel";
+            rulesLabel.Size = new Size(542, 200);
+            rulesLabel.TabIndex = 1;
+            rulesLabel.Text = resources.GetString("rulesLabel.Text");
             // 
             // trackBar1
             // 
-            trackBar1.Location = new Point(227, 25);
+            trackBar1.Location = new Point(324, 42);
+            trackBar1.Margin = new Padding(4, 5, 4, 5);
             trackBar1.Maximum = 1000;
             trackBar1.Minimum = 10;
             trackBar1.Name = "trackBar1";
-            trackBar1.Size = new Size(104, 45);
+            trackBar1.Size = new Size(149, 69);
             trackBar1.TabIndex = 2;
             trackBar1.Value = 100;
             trackBar1.Scroll += trackBar1_Scroll;
             // 
+            // generationLabel
+            // 
+            generationLabel.AutoSize = true;
+            generationLabel.Location = new Point(561, 40);
+            generationLabel.Name = "generationLabel";
+            generationLabel.Size = new Size(117, 25);
+            generationLabel.TabIndex = 3;
+            generationLabel.Text = "Generation: 0";
+            // 
             // GoLForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1367, 750);
+            Controls.Add(generationLabel);
             Controls.Add(trackBar1);
-            Controls.Add(rules);
+            Controls.Add(rulesLabel);
             Controls.Add(StartButton);
+            Margin = new Padding(4, 5, 4, 5);
             MinimizeBox = false;
             Name = "GoLForm";
             Text = "GoLForm";
+            Load += GoLForm_Load;
             ((System.ComponentModel.ISupportInitialize)trackBar1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -84,7 +101,8 @@
         #endregion
 
         private Button StartButton;
-        private Label rules;
+        private Label rulesLabel;
         private TrackBar trackBar1;
+        private Label generationLabel;
     }
 }
