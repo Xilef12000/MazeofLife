@@ -24,14 +24,38 @@ namespace MazeGame
             Room livingroom = new Room("Living Room", 1, 1);
             //livingroom.addItem(new Item("heavy", false));
             roomsList.Add(livingroom);
-            roomsList.Add(new winningRoom("Exit", 3, 1));
+            roomsList.Add(new winningRoom("Exit", 4, 1));
             Room specialRoom = new Room("Special Room", 2, 1);
             Door door1 = new Door("GoLDoor", 'E');   
             specialRoom.addItem(door1);
             roomsList.Add(specialRoom);
             Key key1 = new Key("GoLKey", door1);
-            GolItem gol = new GolItem("Gol", key1);
+            int[,] GoLGoal = {
+                {0, 0, 0, 0, 0},
+                {0, 0, 1, 0, 0},
+                {0, 0, 0, 0, 0},
+                {0, 0, 0, 1, 0},
+                {0, 0, 0, 0, 0}
+            };
+            GolItem gol = new GolItem("Gol", key1, GoLGoal);
             specialRoom.addItem(gol);
+            Room specialRoom2 = new Room("Special Room2", 3, 1);
+            Door door2 = new Door("GoLDoor", 'E');
+            specialRoom2.addItem(door2);
+            roomsList.Add(specialRoom2);
+            Key key2 = new Key("GoLKey2", door2);
+            int[,] GoLGoal2 = {
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 1, 1, 1, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 1, 0},
+                {0, 0, 0, 0, 0, 1, 1, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0}
+            };
+            GolItem gol2 = new GolItem("Gol2", key2, GoLGoal2);
+            specialRoom2.addItem(gol2);
             Room bathroom = new Room("Bathroom", 0, 0);
             bathroom.addItem(new Key("Key", door0));
             bathroom.addItem(new Key("Key2", new Door("Door2", 'E')));

@@ -10,20 +10,15 @@ namespace MazeGame
     internal class GolItem:Item
     {
         private Key key;
+        private int[,] GoLGoal;
 
-        public GolItem(string name, Key key) : base(name, true)
+        public GolItem(string name, Key key, int[,] GoLGoal) : base(name, true)
         {
             this.key = key;
+            this.GoLGoal = GoLGoal;
         }
         public override void use(Player user)
         {
-            int[,] GoLGoal = {
-                {0, 0, 0, 0, 0},
-                {0, 0, 1, 0, 0},
-                {0, 0, 0, 0, 0},
-                {0, 0, 0, 1, 0},
-                {0, 0, 0, 0, 0}
-            };
             Form GoLForm = new GoLForm(GoLGoal);
             GoLForm.ShowDialog();
             DialogResult result = GoLForm.DialogResult;
